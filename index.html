@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,8 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+    rel="stylesheet" />
 
   <style>
     :root {
@@ -177,10 +177,12 @@
       z-index: 5;
       pointer-events: none;
     }
+
     .washi-tape.pink {
       background: rgba(251, 207, 232, 0.6);
       transform: translateX(-50%) rotate(3deg);
     }
+
     .washi-tape.amber {
       background: rgba(254, 240, 138, 0.58);
       transform: translateX(-50%) rotate(-3deg);
@@ -188,9 +190,17 @@
 
     /* Audio Equalizer Bars */
     @keyframes soundWave {
-      0%, 100% { transform: scaleY(0.28); }
-      50% { transform: scaleY(1); }
+
+      0%,
+      100% {
+        transform: scaleY(0.28);
+      }
+
+      50% {
+        transform: scaleY(1);
+      }
     }
+
     .wave-bar {
       width: 3px;
       height: 16px;
@@ -200,28 +210,53 @@
       transform-origin: bottom;
       transition: transform 0.25s ease;
     }
-    .is-playing .wave-bar:nth-child(1) { animation: soundWave 0.72s ease-in-out infinite; }
-    .is-playing .wave-bar:nth-child(2) { animation: soundWave 0.54s ease-in-out infinite 0.14s; }
-    .is-playing .wave-bar:nth-child(3) { animation: soundWave 0.82s ease-in-out infinite 0.24s; }
-    .is-playing .wave-bar:nth-child(4) { animation: soundWave 0.6s ease-in-out infinite 0.1s; }
+
+    .is-playing .wave-bar:nth-child(1) {
+      animation: soundWave 0.72s ease-in-out infinite;
+    }
+
+    .is-playing .wave-bar:nth-child(2) {
+      animation: soundWave 0.54s ease-in-out infinite 0.14s;
+    }
+
+    .is-playing .wave-bar:nth-child(3) {
+      animation: soundWave 0.82s ease-in-out infinite 0.24s;
+    }
+
+    .is-playing .wave-bar:nth-child(4) {
+      animation: soundWave 0.6s ease-in-out infinite 0.1s;
+    }
 
     /* Spinning Vinyl Disc */
     @keyframes slowSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
     }
+
     .disc-spin {
       animation: slowSpin 13s linear infinite;
     }
+
     .disc-paused {
       animation-play-state: paused;
     }
 
     /* Ken Burns Slow Zoom for Memory Reel */
     @keyframes kenBurnsZoom {
-      0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.12) translate(-1.5%, -1.5%); }
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+
+      100% {
+        transform: scale(1.12) translate(-1.5%, -1.5%);
+      }
     }
+
     .reel-zoom-active {
       animation: kenBurnsZoom 5.2s ease-out forwards;
     }
@@ -232,15 +267,18 @@
         opacity: 0;
         transform: translate(-50%, 0) scale(0.75) rotate(-6deg);
       }
+
       20% {
         opacity: 1;
         transform: translate(-50%, -16px) scale(1.05) rotate(4deg);
       }
+
       100% {
         opacity: 0;
         transform: translate(-50%, -68px) scale(0.95) rotate(-3deg);
       }
     }
+
     .floating-lyric-whisper {
       position: fixed;
       pointer-events: none;
@@ -263,6 +301,7 @@
       perspective: 1000px;
       cursor: pointer;
     }
+
     .coupon-flip-inner {
       position: relative;
       width: 100%;
@@ -270,9 +309,11 @@
       transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
       transform-style: preserve-3d;
     }
+
     .coupon-flip-wrap.is-flipped .coupon-flip-inner {
       transform: rotateY(180deg);
     }
+
     .coupon-face {
       position: absolute;
       inset: 0;
@@ -284,6 +325,7 @@
       flex-direction: column;
       justify-content: space-between;
     }
+
     .coupon-back {
       transform: rotateY(180deg);
     }
@@ -295,6 +337,7 @@
       -webkit-backdrop-filter: blur(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
+
     #entry-gate.gate-hidden {
       opacity: 0;
       transform: scale(1.03);
@@ -314,13 +357,22 @@
       padding: 16px;
       z-index: 80;
     }
+
     .lany-modal.active {
       display: flex;
       animation: modalAppear 0.28s ease-out forwards;
     }
+
     @keyframes modalAppear {
-      from { opacity: 0; transform: translateY(10px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* Audio Seek Slider */
@@ -332,6 +384,7 @@
       border-radius: 999px;
       outline: none;
     }
+
     input[type="range"].lany-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
@@ -344,6 +397,7 @@
     }
   </style>
 </head>
+
 <body data-theme="malibu">
   <!-- LANY Live Concert Stage Backdrop & Volumetric Spotlights Canvas -->
   <div id="lany-concert-backdrop" aria-hidden="true"></div>
@@ -355,12 +409,8 @@
   <!-- =========================================================================
        ENTRY GATE OVERLAY ("enter & play you!")
        ========================================================================= -->
-  <div
-    id="entry-gate"
-    class="fixed inset-0 z-[90] flex items-center justify-center p-5 text-center"
-    role="dialog"
-    aria-modal="true"
-  >
+  <div id="entry-gate" class="fixed inset-0 z-[90] flex items-center justify-center p-5 text-center" role="dialog"
+    aria-modal="true">
     <div class="lany-glass w-full max-w-md rounded-3xl p-7 sm:p-9 relative overflow-hidden">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 mb-4">
         <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
@@ -378,7 +428,8 @@
 
       <div class="mt-6 p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between text-left">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center text-slate-950 font-bold text-sm shadow-lg">
+          <div
+            class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center text-slate-950 font-bold text-sm shadow-lg">
             ♥
           </div>
           <div>
@@ -386,16 +437,14 @@
             <p class="font-mono-tech text-[10px] text-slate-400">mama’s boy • soundtrack</p>
           </div>
         </div>
-        <span class="font-mono-tech text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-sky-400/20 text-sky-200 border border-sky-300/30">
+        <span
+          class="font-mono-tech text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-sky-400/20 text-sky-200 border border-sky-300/30">
           ready
         </span>
       </div>
 
-      <button
-        id="enter-experience-btn"
-        type="button"
-        class="mt-6 w-full py-3.5 px-6 rounded-full bg-white hover:bg-sky-100 text-slate-950 font-semibold text-sm tracking-wide shadow-xl transition transform hover:scale-[1.02] active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-      >
+      <button id="enter-experience-btn" type="button"
+        class="mt-6 w-full py-3.5 px-6 rounded-full bg-white hover:bg-sky-100 text-slate-950 font-semibold text-sm tracking-wide shadow-xl transition transform hover:scale-[1.02] active:scale-95 cursor-pointer flex items-center justify-center gap-2">
         <span>enter &amp; play “you!”</span>
         <span>▶</span>
       </button>
@@ -403,10 +452,8 @@
   </div>
 
   <!-- Toast Feedback Pill -->
-  <div
-    id="lany-toast"
-    class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[95] px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md text-xs text-white shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300"
-  >
+  <div id="lany-toast"
+    class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[95] px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md text-xs text-white shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300">
     <span id="lany-toast-text">malibu nights stage lighting 🌙</span>
   </div>
 
@@ -425,24 +472,12 @@
 
       <!-- Stage Spotlight Color Switcher -->
       <div class="inline-flex items-center gap-1.5 p-1 rounded-full lany-glass" aria-label="Stage Lighting">
-        <button
-          type="button"
-          data-set-theme="malibu"
-          title="Malibu Nights"
-          class="w-6 h-6 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-400 border border-white/50 cursor-pointer hover:scale-110 transition"
-        ></button>
-        <button
-          type="button"
-          data-set-theme="sunset"
-          title="Golden Hour LA"
-          class="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-400 to-rose-500 border border-white/50 cursor-pointer hover:scale-110 transition"
-        ></button>
-        <button
-          type="button"
-          data-set-theme="rose"
-          title="Rose Petal Arena"
-          class="w-6 h-6 rounded-full bg-gradient-to-tr from-pink-400 to-purple-400 border border-white/50 cursor-pointer hover:scale-110 transition"
-        ></button>
+        <button type="button" data-set-theme="malibu" title="Malibu Nights"
+          class="w-6 h-6 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-400 border border-white/50 cursor-pointer hover:scale-110 transition"></button>
+        <button type="button" data-set-theme="sunset" title="Golden Hour LA"
+          class="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-400 to-rose-500 border border-white/50 cursor-pointer hover:scale-110 transition"></button>
+        <button type="button" data-set-theme="rose" title="Rose Petal Arena"
+          class="w-6 h-6 rounded-full bg-gradient-to-tr from-pink-400 to-purple-400 border border-white/50 cursor-pointer hover:scale-110 transition"></button>
       </div>
     </header>
 
@@ -454,27 +489,20 @@
       <h1 class="font-serif-italic text-5xl sm:text-6xl text-white mt-2 lany-title-glow leading-tight">
         happy anniversary, <span id="hero-partner-name" class="text-sky-300">you!</span>
       </h1>
-      <p
-        id="hero-dedication-text"
-        class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mt-3 leading-relaxed font-light"
-      >
-        Dari sekian banyak kebetulan di dunia, ketemu dan bareng sama kamu adalah plot twist paling favoritku. Selamat anniversary, partner ketawa &amp; cerita paling seru!
+      <p id="hero-dedication-text"
+        class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mt-3 leading-relaxed font-light">
+        Dari sekian banyak kebetulan di dunia, ketemu dan bareng sama kamu adalah plot twist paling favoritku. Selamat
+        anniversary, partner ketawa &amp; cerita paling seru!
       </p>
 
       <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <button
-          id="open-reel-btn"
-          type="button"
-          class="px-5 py-2.5 rounded-full bg-white hover:bg-sky-100 text-slate-950 font-semibold text-xs sm:text-sm shadow-lg transition transform hover:scale-[1.03] active:scale-95 cursor-pointer flex items-center gap-2"
-        >
+        <button id="open-reel-btn" type="button"
+          class="px-5 py-2.5 rounded-full bg-white hover:bg-sky-100 text-slate-950 font-semibold text-xs sm:text-sm shadow-lg transition transform hover:scale-[1.03] active:scale-95 cursor-pointer flex items-center gap-2">
           <span>play memory reel</span>
           <span>🎬</span>
         </button>
-        <button
-          id="open-letter-modal-btn"
-          type="button"
-          class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-medium text-xs sm:text-sm transition transform hover:scale-[1.03] active:scale-95 cursor-pointer flex items-center gap-2"
-        >
+        <button id="open-letter-modal-btn" type="button"
+          class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-medium text-xs sm:text-sm transition transform hover:scale-[1.03] active:scale-95 cursor-pointer flex items-center gap-2">
           <span>read love letter</span>
           <span>💌</span>
         </button>
@@ -486,11 +514,10 @@
       <div class="flex items-center gap-4">
         <!-- Spinning Vinyl Disc -->
         <div class="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
-          <div
-            id="album-disc-art"
-            class="w-full h-full rounded-full bg-gradient-to-tr from-slate-950 via-slate-800 to-slate-950 border-2 border-white/20 shadow-xl flex items-center justify-center disc-spin disc-paused"
-          >
-            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center border border-white/50">
+          <div id="album-disc-art"
+            class="w-full h-full rounded-full bg-gradient-to-tr from-slate-950 via-slate-800 to-slate-950 border-2 border-white/20 shadow-xl flex items-center justify-center disc-spin disc-paused">
+            <div
+              class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center border border-white/50">
               <div class="w-2 h-2 rounded-full bg-slate-950"></div>
             </div>
           </div>
@@ -516,12 +543,8 @@
               </p>
             </div>
 
-            <button
-              id="play-pause-btn"
-              type="button"
-              aria-label="Play or Pause"
-              class="w-11 h-11 rounded-full bg-white hover:bg-sky-100 text-slate-950 flex items-center justify-center text-sm font-bold shadow-lg transition transform active:scale-90 cursor-pointer shrink-0"
-            >
+            <button id="play-pause-btn" type="button" aria-label="Play or Pause"
+              class="w-11 h-11 rounded-full bg-white hover:bg-sky-100 text-slate-950 flex items-center justify-center text-sm font-bold shadow-lg transition transform active:scale-90 cursor-pointer shrink-0">
               <span id="play-pause-icon">▶</span>
             </button>
           </div>
@@ -529,15 +552,8 @@
           <!-- Seek Slider -->
           <div class="mt-3 flex items-center gap-2.5">
             <span id="time-current" class="font-mono-tech text-[10px] text-slate-400 w-8">0:00</span>
-            <input
-              id="audio-seek-bar"
-              type="range"
-              min="0"
-              max="100"
-              value="0"
-              aria-label="Audio progress"
-              class="lany-slider flex-1 cursor-pointer"
-            />
+            <input id="audio-seek-bar" type="range" min="0" max="100" value="0" aria-label="Audio progress"
+              class="lany-slider flex-1 cursor-pointer" />
             <span id="time-duration" class="font-mono-tech text-[10px] text-slate-400 w-8 text-right">0:30</span>
           </div>
         </div>
@@ -592,13 +608,9 @@
         <article data-photo-idx="0" class="polaroid-card -rotate-2">
           <div class="washi-tape"></div>
           <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
-            <img
-              id="gallery-img-0"
-              src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80"
+            <img id="gallery-img-0" src="https://i.pinimg.com/736x/31/d8/5a/31d85a8e04305c65fc268b21d0ffdd6b.jpg"
               onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+01';"
-              alt="Memory 01"
-              class="w-full h-full object-cover"
-            />
+              alt="Memory 01" class="w-full h-full object-cover" />
           </div>
           <p id="gallery-cap-0" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
             our very first core memory ♥
@@ -612,13 +624,9 @@
         <article data-photo-idx="1" class="polaroid-card rotate-1">
           <div class="washi-tape pink"></div>
           <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
-            <img
-              id="gallery-img-1"
-              src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80"
+            <img id="gallery-img-1" src="https://i.pinimg.com/736x/ea/34/bc/ea34bc298f3e3084adfa6d140a30c0c2.jpg"
               onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+02';"
-              alt="Memory 02"
-              class="w-full h-full object-cover"
-            />
+              alt="Memory 02" class="w-full h-full object-cover" />
           </div>
           <p id="gallery-cap-1" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
             ketawa sampai lupa waktu 😂
@@ -632,13 +640,9 @@
         <article data-photo-idx="2" class="polaroid-card -rotate-1">
           <div class="washi-tape amber"></div>
           <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
-            <img
-              id="gallery-img-2"
-              src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80"
+            <img id="gallery-img-2" src="https://i.pinimg.com/1200x/07/84/c0/0784c0092122896090183ff5d4fa8c08.jpg"
               onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+03';"
-              alt="Memory 03"
-              class="w-full h-full object-cover"
-            />
+              alt="Memory 03" class="w-full h-full object-cover" />
           </div>
           <p id="gallery-cap-2" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
             late night drives &amp; city lights
@@ -652,13 +656,9 @@
         <article data-photo-idx="3" class="polaroid-card rotate-2">
           <div class="washi-tape pink"></div>
           <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
-            <img
-              id="gallery-img-3"
-              src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=600&q=80"
+            <img id="gallery-img-3" src="https://i.pinimg.com/1200x/65/a7/9a/65a79a27712d200d069852a7718d83aa.jpg"
               onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+04';"
-              alt="Memory 04"
-              class="w-full h-full object-cover"
-            />
+              alt="Memory 04" class="w-full h-full object-cover" />
           </div>
           <p id="gallery-cap-3" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
             random date yang selalu seru ✨
@@ -672,13 +672,9 @@
         <article data-photo-idx="4" class="polaroid-card -rotate-2">
           <div class="washi-tape"></div>
           <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
-            <img
-              id="gallery-img-4"
-              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+            <img id="gallery-img-4" src="https://i.pinimg.com/1200x/53/90/85/53908571fab63dbf898fcbb1d64a1c92.jpg"
               onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+05';"
-              alt="Memory 05"
-              class="w-full h-full object-cover"
-            />
+              alt="Memory 05" class="w-full h-full object-cover" />
           </div>
           <p id="gallery-cap-4" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
             malibu sunset &amp; quiet talks
@@ -692,13 +688,9 @@
         <article data-photo-idx="5" class="polaroid-card rotate-1">
           <div class="washi-tape amber"></div>
           <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
-            <img
-              id="gallery-img-5"
-              src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80"
+            <img id="gallery-img-5" src="https://i.pinimg.com/736x/c6/51/3a/c6513adb17c0d811d1f5354b57658662.jpg"
               onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+06';"
-              alt="Memory 06"
-              class="w-full h-full object-cover"
-            />
+              alt="Memory 06" class="w-full h-full object-cover" />
           </div>
           <p id="gallery-cap-5" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
             to many more years with you!
@@ -716,10 +708,8 @@
         <span class="font-mono-tech text-[10px] uppercase tracking-[0.22em] text-sky-300">
           cute reasons &amp; inside jokes
         </span>
-        <span
-          id="reason-counter-pill"
-          class="font-mono-tech text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-slate-300"
-        >
+        <span id="reason-counter-pill"
+          class="font-mono-tech text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-slate-300">
           01 / 06
         </span>
       </div>
@@ -732,18 +722,12 @@
       </p>
 
       <div class="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
-        <button
-          id="next-reason-btn"
-          type="button"
-          class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition cursor-pointer"
-        >
+        <button id="next-reason-btn" type="button"
+          class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition cursor-pointer">
           next reason ↻
         </button>
-        <button
-          id="send-love-burst-btn"
-          type="button"
-          class="px-4 py-2 rounded-full bg-gradient-to-r from-sky-400 to-pink-400 text-slate-950 font-semibold text-xs shadow-md hover:opacity-95 transition cursor-pointer"
-        >
+        <button id="send-love-burst-btn" type="button"
+          class="px-4 py-2 rounded-full bg-gradient-to-r from-sky-400 to-pink-400 text-slate-950 font-semibold text-xs shadow-md hover:opacity-95 transition cursor-pointer">
           send love ✦
         </button>
       </div>
@@ -782,11 +766,8 @@
               <p class="text-xs text-slate-200 leading-relaxed">
                 Berlaku kapan aja kamu pengen keliling kota sambil nyanyi lagu LANY keras-keras!
               </p>
-              <button
-                type="button"
-                data-claim-coupon="0"
-                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
-              >
+              <button type="button" data-claim-coupon="0"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer">
                 klaim kupon ✓
               </button>
             </div>
@@ -811,11 +792,8 @@
               <p class="text-xs text-slate-200 leading-relaxed">
                 No debat “terserah mau makan apa”. Kamu yang tentuin menunya, aku yang traktir!
               </p>
-              <button
-                type="button"
-                data-claim-coupon="1"
-                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
-              >
+              <button type="button" data-claim-coupon="1"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer">
                 klaim kupon ✓
               </button>
             </div>
@@ -840,11 +818,8 @@
               <p class="text-xs text-slate-200 leading-relaxed">
                 Gunakan kartu ini kalau salah satu lagi bad mood—wajib langsung baikan &amp; peluk!
               </p>
-              <button
-                type="button"
-                data-claim-coupon="2"
-                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
-              >
+              <button type="button" data-claim-coupon="2"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer">
                 klaim kupon ✓
               </button>
             </div>
@@ -869,11 +844,8 @@
               <p class="text-xs text-slate-200 leading-relaxed">
                 Full quality time berdua nonton film atau series favorit kamu tanpa gangguan!
               </p>
-              <button
-                type="button"
-                data-claim-coupon="3"
-                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
-              >
+              <button type="button" data-claim-coupon="3"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer">
                 klaim kupon ✓
               </button>
             </div>
@@ -900,12 +872,24 @@
     <div class="lany-glass w-full max-w-sm rounded-3xl p-4 sm:p-5 relative overflow-hidden">
       <!-- 6-Segment Story Progress Bars -->
       <div id="reel-progress-bars" class="grid grid-cols-6 gap-1.5 mb-3">
-        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
-        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
-        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
-        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
-        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
-        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden">
+          <div class="reel-bar h-full bg-white w-0"></div>
+        </div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden">
+          <div class="reel-bar h-full bg-white w-0"></div>
+        </div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden">
+          <div class="reel-bar h-full bg-white w-0"></div>
+        </div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden">
+          <div class="reel-bar h-full bg-white w-0"></div>
+        </div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden">
+          <div class="reel-bar h-full bg-white w-0"></div>
+        </div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden">
+          <div class="reel-bar h-full bg-white w-0"></div>
+        </div>
       </div>
 
       <div class="flex items-center justify-between mb-3">
@@ -916,39 +900,24 @@
           </span>
           <span id="reel-slide-indicator" class="font-mono-tech text-[10px] text-sky-300">1 / 6</span>
         </div>
-        <button
-          id="close-reel-btn"
-          type="button"
-          class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs flex items-center justify-center cursor-pointer"
-        >
+        <button id="close-reel-btn" type="button"
+          class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs flex items-center justify-center cursor-pointer">
           ✕
         </button>
       </div>
 
       <!-- Animated Ken Burns Photo Frame -->
       <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/15">
-        <img
-          id="reel-active-img"
-          src=""
+        <img id="reel-active-img" src=""
           onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Our+Memory';"
-          alt="Memory Reel Slide"
-          class="w-full h-full object-cover"
-        />
+          alt="Memory Reel Slide" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
 
         <!-- Tap Left / Right Zones -->
-        <button
-          id="reel-prev-btn"
-          type="button"
-          aria-label="Previous memory"
-          class="absolute inset-y-0 left-0 w-1/3 cursor-pointer"
-        ></button>
-        <button
-          id="reel-next-btn"
-          type="button"
-          aria-label="Next memory"
-          class="absolute inset-y-0 right-0 w-1/3 cursor-pointer"
-        ></button>
+        <button id="reel-prev-btn" type="button" aria-label="Previous memory"
+          class="absolute inset-y-0 left-0 w-1/3 cursor-pointer"></button>
+        <button id="reel-next-btn" type="button" aria-label="Next memory"
+          class="absolute inset-y-0 right-0 w-1/3 cursor-pointer"></button>
 
         <!-- Synchronized LANY Lyric & Photo Caption Overlay -->
         <div class="absolute bottom-4 inset-x-4 text-center pointer-events-none">
@@ -968,11 +937,8 @@
        ========================================================================= -->
   <div id="lightbox-modal" class="lany-modal" role="dialog" aria-modal="true">
     <div class="lany-glass w-full max-w-sm rounded-3xl p-5 relative">
-      <button
-        type="button"
-        data-close-modal="lightbox-modal"
-        class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white font-bold flex items-center justify-center cursor-pointer z-10"
-      >
+      <button type="button" data-close-modal="lightbox-modal"
+        class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white font-bold flex items-center justify-center cursor-pointer z-10">
         ✕
       </button>
 
@@ -982,7 +948,8 @@
           <img id="lightbox-img" src="" alt="Memory" class="w-full h-full object-cover" />
         </div>
 
-        <p id="lightbox-caption-text" class="font-handwritten text-2xl sm:text-3xl font-bold text-slate-900 leading-snug mt-3">
+        <p id="lightbox-caption-text"
+          class="font-handwritten text-2xl sm:text-3xl font-bold text-slate-900 leading-snug mt-3">
           our very first core memory ♥
         </p>
         <p id="lightbox-date-text" class="font-mono-tech text-[10px] text-slate-500 mt-1">
@@ -997,11 +964,8 @@
        ========================================================================= -->
   <div id="letter-modal" class="lany-modal" role="dialog" aria-modal="true">
     <div class="lany-glass w-full max-w-md rounded-3xl p-6 sm:p-7 relative">
-      <button
-        type="button"
-        data-close-modal="letter-modal"
-        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 flex items-center justify-center text-sm cursor-pointer"
-      >
+      <button type="button" data-close-modal="letter-modal"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 flex items-center justify-center text-sm cursor-pointer">
         ✕
       </button>
 
@@ -1013,12 +977,16 @@
       </h3>
 
       <div class="mt-4 pt-4 border-t border-white/10 max-h-[58vh] overflow-y-auto">
-        <p id="modal-letter-content" class="text-sm sm:text-base text-slate-200 leading-relaxed whitespace-pre-line font-light">
+        <p id="modal-letter-content"
+          class="text-sm sm:text-base text-slate-200 leading-relaxed whitespace-pre-line font-light">
           Happy Anniversary, Sayang! ♥
 
-          Kalau perasaan ini harus dirangkum ke dalam satu lagu, jawabannya selalu “you!” dari LANY. Kamu selalu jadi air di tengah gurun, matahari di langit yang paling cerah, sekaligus tempat pulang paling nyaman buat aku.
+          Kalau perasaan ini harus dirangkum ke dalam satu lagu, jawabannya selalu “you!” dari LANY. Kamu selalu jadi
+          air di tengah gurun, matahari di langit yang paling cerah, sekaligus tempat pulang paling nyaman buat aku.
 
-          Terima kasih sudah sabar menghadapi tingkahku, selalu ikut ketawa di setiap hal random yang kita lakuin, dan bikin hari-hari biasa terasa luar biasa. Semoga kita terus ngumpulin lebih banyak foto Polaroid, cerita seru, dan tahun-tahun bahagia bareng ya!
+          Terima kasih sudah sabar menghadapi tingkahku, selalu ikut ketawa di setiap hal random yang kita lakuin, dan
+          bikin hari-hari biasa terasa luar biasa. Semoga kita terus ngumpulin lebih banyak foto Polaroid, cerita seru,
+          dan tahun-tahun bahagia bareng ya!
         </p>
       </div>
 
@@ -1053,32 +1021,32 @@
         // Ganti 6 foto kenangan, caption tulisan tangan, & label tanggal di bawah ini:
         memories: [
           {
-            image: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80',
+            image: 'https://i.pinimg.com/1200x/27/bb/60/27bb60437ffc8643c74ec7ac62ee0a54.jpg',
             caption: 'our very first core memory ♥',
             label: 'CHAPTER 01 • OUR MEMORY'
           },
           {
-            image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80',
+            image: 'https://i.pinimg.com/736x/68/f2/55/68f25547c1937a87def2d17959cd50a6.jpg',
             caption: 'ketawa sampai lupa waktu 😂',
             label: 'CHAPTER 02 • OUR MEMORY'
           },
           {
-            image: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80',
+            image: 'https://i.pinimg.com/736x/d7/4e/0a/d74e0ae27829179bbccdb98b6cdffd26.jpg',
             caption: 'late night drives & city lights',
             label: 'CHAPTER 03 • OUR MEMORY'
           },
           {
-            image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=600&q=80',
+            image: 'https://i.pinimg.com/736x/82/5c/d2/825cd243786c0023b0d77a0eea6855fc.jpg',
             caption: 'random date yang selalu seru ✨',
             label: 'CHAPTER 04 • OUR MEMORY'
           },
           {
-            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
+            image: 'https://i.pinimg.com/736x/d5/13/82/d5138236ec7ab7071251f952f1289dba.jpg',
             caption: 'malibu sunset & quiet talks',
             label: 'CHAPTER 05 • OUR MEMORY'
           },
           {
-            image: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80',
+            image: 'https://i.pinimg.com/1200x/4f/24/35/4f243520b6348fd1582e7bbd0eb44d46.jpg',
             caption: 'to many more years with you!',
             label: 'CHAPTER 06 • OUR MEMORY'
           }
@@ -1258,7 +1226,7 @@
             }
             return resolvedAudioUrl;
           }
-        } catch (err) {}
+        } catch (err) { }
 
         try {
           const res2 = await fetch('https://itunes.apple.com/search?term=LANY+you!&media=music&entity=song&limit=3');
@@ -1273,7 +1241,7 @@
             }
             return resolvedAudioUrl;
           }
-        } catch (err2) {}
+        } catch (err2) { }
         return '';
       }
 
@@ -1321,7 +1289,7 @@
 
           playChord();
           synthInterval = setInterval(playChord, 3000);
-        } catch (e) {}
+        } catch (e) { }
       }
 
       function stopSynthPadFallback() {
@@ -1788,4 +1756,5 @@
     })();
   </script>
 </body>
+
 </html>
