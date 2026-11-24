@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>you! — LANY • Our Anniversary Universe</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: LANY Lowercase Sans, Editorial Italic Serif, Handwritten Polaroid & Tech Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg-deep: #050814;
+      --bg-twilight: #0b132b;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #f472b6;
+      --accent-glow: rgba(56, 189, 248, 0.28);
+      --glass-bg: rgba(13, 19, 38, 0.68);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    /* 3 Signature LANY Era Themes */
+    body[data-theme="malibu"] {
+      --bg-deep: #050814;
+      --bg-twilight: #0b132b;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-glow: rgba(56, 189, 248, 0.3);
+    }
+
+    body[data-theme="sunset"] {
+      --bg-deep: #120813;
+      --bg-twilight: #261026;
+      --accent-primary: #fb923c;
+      --accent-secondary: #f43f5e;
+      --accent-glow: rgba(251, 146, 60, 0.28);
+    }
+
+    body[data-theme="rose"] {
+      --bg-deep: #0f0713;
+      --bg-twilight: #210e29;
+      --accent-primary: #f472b6;
+      --accent-secondary: #c084fc;
+      --accent-glow: rgba(244, 114, 182, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .font-serif-italic {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+    }
+
+    .font-handwritten {
+      font-family: 'Caveat', cursive;
+    }
+
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Ambient LANY Live Concert Stage Backdrop & Volumetric Lights */
+    #lany-concert-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-color: var(--bg-deep);
+      background-image:
+        linear-gradient(180deg, rgba(5, 8, 20, 0.62) 0%, rgba(11, 19, 43, 0.55) 45%, rgba(5, 8, 20, 0.92) 100%),
+        radial-gradient(ellipse at 50% 18%, var(--accent-glow) 0%, transparent 65%),
+        url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=85');
+      background-size: cover;
+      background-position: center 35%;
+      transition: background-color 0.8s ease;
+    }
+
+    #lany-concert-backdrop::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 35%, rgba(3, 5, 14, 0.78) 100%);
+      pointer-events: none;
+    }
+
+    #lany-sky-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Frosted Glass Surface */
+    .lany-glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      transition: border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+
+    .lany-glass-hover:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: translateY(-2px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 28px var(--accent-glow);
+    }
+
+    .lany-title-glow {
+      text-shadow: 0 0 38px var(--accent-glow);
+    }
+
+    /* Polaroid Physical Photo Card */
+    .polaroid-card {
+      background: linear-gradient(180deg, #fcfaf5 0%, #f4efe6 100%);
+      color: #1e293b;
+      padding: 10px 10px 14px 10px;
+      border-radius: 6px;
+      box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .polaroid-card:hover {
+      transform: rotate(0deg) scale(1.035) translateY(-4px) !important;
+      box-shadow:
+        0 22px 42px rgba(0, 0, 0, 0.65),
+        0 0 24px var(--accent-glow);
+      z-index: 15;
+    }
+
+    /* Translucent Washi Tape on Top of Polaroids */
+    .washi-tape {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 58px;
+      height: 18px;
+      background: rgba(186, 230, 253, 0.55);
+      backdrop-filter: blur(4px);
+      border-left: 1px dashed rgba(255, 255, 255, 0.5);
+      border-right: 1px dashed rgba(255, 255, 255, 0.5);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      z-index: 5;
+      pointer-events: none;
+    }
+    .washi-tape.pink {
+      background: rgba(251, 207, 232, 0.6);
+      transform: translateX(-50%) rotate(3deg);
+    }
+    .washi-tape.amber {
+      background: rgba(254, 240, 138, 0.58);
+      transform: translateX(-50%) rotate(-3deg);
+    }
+
+    /* Audio Equalizer Bars */
+    @keyframes soundWave {
+      0%, 100% { transform: scaleY(0.28); }
+      50% { transform: scaleY(1); }
+    }
+    .wave-bar {
+      width: 3px;
+      height: 16px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+      transform: scaleY(0.28);
+      transform-origin: bottom;
+      transition: transform 0.25s ease;
+    }
+    .is-playing .wave-bar:nth-child(1) { animation: soundWave 0.72s ease-in-out infinite; }
+    .is-playing .wave-bar:nth-child(2) { animation: soundWave 0.54s ease-in-out infinite 0.14s; }
+    .is-playing .wave-bar:nth-child(3) { animation: soundWave 0.82s ease-in-out infinite 0.24s; }
+    .is-playing .wave-bar:nth-child(4) { animation: soundWave 0.6s ease-in-out infinite 0.1s; }
+
+    /* Spinning Vinyl Disc */
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .disc-spin {
+      animation: slowSpin 13s linear infinite;
+    }
+    .disc-paused {
+      animation-play-state: paused;
+    }
+
+    /* Ken Burns Slow Zoom for Memory Reel */
+    @keyframes kenBurnsZoom {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.12) translate(-1.5%, -1.5%); }
+    }
+    .reel-zoom-active {
+      animation: kenBurnsZoom 5.2s ease-out forwards;
+    }
+
+    /* Floating Sticker / Lyric Pop */
+    @keyframes floatStickerUp {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.75) rotate(-6deg);
+      }
+      20% {
+        opacity: 1;
+        transform: translate(-50%, -16px) scale(1.05) rotate(4deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -68px) scale(0.95) rotate(-3deg);
+      }
+    }
+    .floating-lyric-whisper {
+      position: fixed;
+      pointer-events: none;
+      z-index: 95;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #f8fafc;
+      background: rgba(13, 18, 36, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 6px 14px;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      animation: floatStickerUp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* 3D Flip Coupon Cards */
+    .coupon-flip-wrap {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .coupon-flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+    }
+    .coupon-flip-wrap.is-flipped .coupon-flip-inner {
+      transform: rotateY(180deg);
+    }
+    .coupon-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .coupon-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Welcome Gate Overlay */
+    #entry-gate {
+      background: radial-gradient(circle at 50% 25%, rgba(28, 38, 74, 0.88) 0%, rgba(5, 8, 20, 0.98) 78%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    #entry-gate.gate-hidden {
+      opacity: 0;
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+
+    /* Modals */
+    .lany-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 14, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 80;
+    }
+    .lany-modal.active {
+      display: flex;
+      animation: modalAppear 0.28s ease-out forwards;
+    }
+    @keyframes modalAppear {
+      from { opacity: 0; transform: translateY(10px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Audio Seek Slider */
+    input[type="range"].lany-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.16);
+      height: 4px;
+      border-radius: 999px;
+      outline: none;
+    }
+    input[type="range"].lany-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
+    }
+  </style>
+</head>
+<body data-theme="malibu">
+  <!-- LANY Live Concert Stage Backdrop & Volumetric Spotlights Canvas -->
+  <div id="lany-concert-backdrop" aria-hidden="true"></div>
+  <canvas id="lany-sky-canvas"></canvas>
+
+  <!-- Primary Audio Element for "you!" — LANY -->
+  <audio id="lany-audio" preload="auto" loop crossorigin="anonymous"></audio>
+
+  <!-- =========================================================================
+       ENTRY GATE OVERLAY ("enter & play you!")
+       ========================================================================= -->
+  <div
+    id="entry-gate"
+    class="fixed inset-0 z-[90] flex items-center justify-center p-5 text-center"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="lany-glass w-full max-w-md rounded-3xl p-7 sm:p-9 relative overflow-hidden">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 mb-4">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+        <span class="font-mono-tech text-[10px] uppercase tracking-[0.22em] text-sky-200">
+          lany live arena • special pass
+        </span>
+      </div>
+
+      <h1 class="font-serif-italic text-5xl sm:text-6xl text-white lany-title-glow leading-none">
+        everything leads to you!
+      </h1>
+      <p class="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed font-light">
+        Sebuah ruang kenangan kecil bertema konser LANY dengan lagu favorit kita. Nyalakan suara &amp; masuk ke dalam.
+      </p>
+
+      <div class="mt-6 p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between text-left">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center text-slate-950 font-bold text-sm shadow-lg">
+            ♥
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white lowercase">you! — LANY</p>
+            <p class="font-mono-tech text-[10px] text-slate-400">mama’s boy • soundtrack</p>
+          </div>
+        </div>
+        <span class="font-mono-tech text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-sky-400/20 text-sky-200 border border-sky-300/30">
+          ready
+        </span>
+      </div>
+
+      <button
+        id="enter-experience-btn"
+        type="button"
+        class="mt-6 w-full py-3.5 px-6 rounded-full bg-white hover:bg-sky-100 text-slate-950 font-semibold text-sm tracking-wide shadow-xl transition transform hover:scale-[1.02] active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+      >
+        <span>enter &amp; play “you!”</span>
+        <span>▶</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Feedback Pill -->
+  <div
+    id="lany-toast"
+    class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[95] px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 backdrop-blur-md text-xs text-white shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300"
+  >
+    <span id="lany-toast-text">malibu nights stage lighting 🌙</span>
+  </div>
+
+  <!-- =========================================================================
+       MAIN LANY ANNIVERSARY CONCERT EXPERIENCE
+       ========================================================================= -->
+  <main class="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 pt-5 pb-16 space-y-6">
+    <!-- Top Bar: Recipient Pill & Stage Lighting Theme Switcher -->
+    <header class="flex flex-wrap items-center justify-between gap-2">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full lany-glass">
+        <span class="text-pink-400 text-xs">✦</span>
+        <span id="header-recipient-badge" class="font-mono-tech text-[11px] text-slate-200 lowercase">
+          happy anniversary, you!
+        </span>
+      </div>
+
+      <!-- Stage Spotlight Color Switcher -->
+      <div class="inline-flex items-center gap-1.5 p-1 rounded-full lany-glass" aria-label="Stage Lighting">
+        <button
+          type="button"
+          data-set-theme="malibu"
+          title="Malibu Nights"
+          class="w-6 h-6 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-400 border border-white/50 cursor-pointer hover:scale-110 transition"
+        ></button>
+        <button
+          type="button"
+          data-set-theme="sunset"
+          title="Golden Hour LA"
+          class="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-400 to-rose-500 border border-white/50 cursor-pointer hover:scale-110 transition"
+        ></button>
+        <button
+          type="button"
+          data-set-theme="rose"
+          title="Rose Petal Arena"
+          class="w-6 h-6 rounded-full bg-gradient-to-tr from-pink-400 to-purple-400 border border-white/50 cursor-pointer hover:scale-110 transition"
+        ></button>
+      </div>
+    </header>
+
+    <!-- 1. Hero Dedication Card -->
+    <section class="lany-glass lany-glass-hover rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden">
+      <p class="font-mono-tech text-[10px] uppercase tracking-[0.26em] text-sky-300">
+        our anniversary • live from malibu to la
+      </p>
+      <h1 class="font-serif-italic text-5xl sm:text-6xl text-white mt-2 lany-title-glow leading-tight">
+        happy anniversary, <span id="hero-partner-name" class="text-sky-300">you!</span>
+      </h1>
+      <p
+        id="hero-dedication-text"
+        class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mt-3 leading-relaxed font-light"
+      >
+        Dari sekian banyak kebetulan di dunia, ketemu dan bareng sama kamu adalah plot twist paling favoritku. Selamat anniversary, partner ketawa &amp; cerita paling seru!
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <button
+          id="open-reel-btn"
+          type="button"
+          class="px-5 py-2.5 rounded-full bg-white hover:bg-sky-100 text-slate-950 font-semibold text-xs sm:text-sm shadow-lg transition transform hover:scale-[1.03] active:scale-95 cursor-pointer flex items-center gap-2"
+        >
+          <span>play memory reel</span>
+          <span>🎬</span>
+        </button>
+        <button
+          id="open-letter-modal-btn"
+          type="button"
+          class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-medium text-xs sm:text-sm transition transform hover:scale-[1.03] active:scale-95 cursor-pointer flex items-center gap-2"
+        >
+          <span>read love letter</span>
+          <span>💌</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. Glassmorphism Vinyl Audio Player ("you!" — LANY) -->
+    <section class="lany-glass lany-glass-hover rounded-3xl p-4 sm:p-5">
+      <div class="flex items-center gap-4">
+        <!-- Spinning Vinyl Disc -->
+        <div class="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
+          <div
+            id="album-disc-art"
+            class="w-full h-full rounded-full bg-gradient-to-tr from-slate-950 via-slate-800 to-slate-950 border-2 border-white/20 shadow-xl flex items-center justify-center disc-spin disc-paused"
+          >
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center border border-white/50">
+              <div class="w-2 h-2 rounded-full bg-slate-950"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track Details & Controls -->
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-2">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <h2 class="text-base sm:text-lg font-semibold text-white truncate lowercase">
+                  you! — LANY
+                </h2>
+                <div id="audio-waveform" class="flex items-end gap-0.5 h-4 shrink-0">
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                </div>
+              </div>
+              <p id="audio-status-caption" class="text-xs text-slate-400 truncate mt-0.5">
+                paused • you! — LANY
+              </p>
+            </div>
+
+            <button
+              id="play-pause-btn"
+              type="button"
+              aria-label="Play or Pause"
+              class="w-11 h-11 rounded-full bg-white hover:bg-sky-100 text-slate-950 flex items-center justify-center text-sm font-bold shadow-lg transition transform active:scale-90 cursor-pointer shrink-0"
+            >
+              <span id="play-pause-icon">▶</span>
+            </button>
+          </div>
+
+          <!-- Seek Slider -->
+          <div class="mt-3 flex items-center gap-2.5">
+            <span id="time-current" class="font-mono-tech text-[10px] text-slate-400 w-8">0:00</span>
+            <input
+              id="audio-seek-bar"
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              aria-label="Audio progress"
+              class="lany-slider flex-1 cursor-pointer"
+            />
+            <span id="time-duration" class="font-mono-tech text-[10px] text-slate-400 w-8 text-right">0:30</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Live Relationship Counter -->
+    <section class="lany-glass lany-glass-hover rounded-3xl p-5 sm:p-6 text-center">
+      <p id="counter-heading" class="font-mono-tech text-[10px] uppercase tracking-[0.24em] text-sky-300">
+        time since our story began
+      </p>
+      <p id="counter-date-sub" class="font-serif-italic text-xl text-slate-200 mt-0.5">
+        since november 25, 2025
+      </p>
+
+      <div class="grid grid-cols-4 gap-2.5 sm:gap-3.5 mt-4">
+        <div class="rounded-2xl bg-white/5 border border-white/10 py-3 px-2">
+          <span id="count-days" class="block text-2xl sm:text-3xl font-bold text-white">0</span>
+          <span class="font-mono-tech text-[10px] uppercase tracking-wider text-slate-400">days</span>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 py-3 px-2">
+          <span id="count-hours" class="block text-2xl sm:text-3xl font-bold text-sky-300">00</span>
+          <span class="font-mono-tech text-[10px] uppercase tracking-wider text-slate-400">hours</span>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 py-3 px-2">
+          <span id="count-mins" class="block text-2xl sm:text-3xl font-bold text-pink-300">00</span>
+          <span class="font-mono-tech text-[10px] uppercase tracking-wider text-slate-400">mins</span>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 py-3 px-2">
+          <span id="count-secs" class="block text-2xl sm:text-3xl font-bold text-indigo-300">00</span>
+          <span class="font-mono-tech text-[10px] uppercase tracking-wider text-slate-400">secs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Polaroid Memory Wall (6 Core Memories) -->
+    <section class="space-y-4">
+      <div class="flex items-end justify-between px-1">
+        <div>
+          <p class="font-mono-tech text-[10px] uppercase tracking-[0.24em] text-pink-300">
+            polaroid archive • tap to zoom
+          </p>
+          <h2 class="font-serif-italic text-3xl text-white">
+            snapshots of us
+          </h2>
+        </div>
+        <span class="font-mono-tech text-[10px] text-slate-400">06 frames</span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 pt-2">
+        <!-- Polaroid 1 -->
+        <article data-photo-idx="0" class="polaroid-card -rotate-2">
+          <div class="washi-tape"></div>
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
+            <img
+              id="gallery-img-0"
+              src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+01';"
+              alt="Memory 01"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <p id="gallery-cap-0" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
+            our very first core memory ♥
+          </p>
+          <p id="gallery-date-0" class="font-mono-tech text-[9px] text-slate-500 mt-1">
+            CHAPTER 01 • OUR MEMORY
+          </p>
+        </article>
+
+        <!-- Polaroid 2 -->
+        <article data-photo-idx="1" class="polaroid-card rotate-1">
+          <div class="washi-tape pink"></div>
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
+            <img
+              id="gallery-img-1"
+              src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+02';"
+              alt="Memory 02"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <p id="gallery-cap-1" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
+            ketawa sampai lupa waktu 😂
+          </p>
+          <p id="gallery-date-1" class="font-mono-tech text-[9px] text-slate-500 mt-1">
+            CHAPTER 02 • OUR MEMORY
+          </p>
+        </article>
+
+        <!-- Polaroid 3 -->
+        <article data-photo-idx="2" class="polaroid-card -rotate-1">
+          <div class="washi-tape amber"></div>
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
+            <img
+              id="gallery-img-2"
+              src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+03';"
+              alt="Memory 03"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <p id="gallery-cap-2" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
+            late night drives &amp; city lights
+          </p>
+          <p id="gallery-date-2" class="font-mono-tech text-[9px] text-slate-500 mt-1">
+            CHAPTER 03 • OUR MEMORY
+          </p>
+        </article>
+
+        <!-- Polaroid 4 -->
+        <article data-photo-idx="3" class="polaroid-card rotate-2">
+          <div class="washi-tape pink"></div>
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
+            <img
+              id="gallery-img-3"
+              src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=600&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+04';"
+              alt="Memory 04"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <p id="gallery-cap-3" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
+            random date yang selalu seru ✨
+          </p>
+          <p id="gallery-date-3" class="font-mono-tech text-[9px] text-slate-500 mt-1">
+            CHAPTER 04 • OUR MEMORY
+          </p>
+        </article>
+
+        <!-- Polaroid 5 -->
+        <article data-photo-idx="4" class="polaroid-card -rotate-2">
+          <div class="washi-tape"></div>
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
+            <img
+              id="gallery-img-4"
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+05';"
+              alt="Memory 05"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <p id="gallery-cap-4" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
+            malibu sunset &amp; quiet talks
+          </p>
+          <p id="gallery-date-4" class="font-mono-tech text-[9px] text-slate-500 mt-1">
+            CHAPTER 05 • OUR MEMORY
+          </p>
+        </article>
+
+        <!-- Polaroid 6 -->
+        <article data-photo-idx="5" class="polaroid-card rotate-1">
+          <div class="washi-tape amber"></div>
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-xs bg-slate-200">
+            <img
+              id="gallery-img-5"
+              src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Memory+06';"
+              alt="Memory 06"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <p id="gallery-cap-5" class="font-handwritten text-xl font-bold text-slate-900 leading-tight mt-2.5">
+            to many more years with you!
+          </p>
+          <p id="gallery-date-5" class="font-mono-tech text-[9px] text-slate-500 mt-1">
+            CHAPTER 06 • OUR MEMORY
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Cute Reasons & Inside Jokes Deck -->
+    <section class="lany-glass lany-glass-hover rounded-3xl p-6 relative overflow-hidden">
+      <div class="flex items-center justify-between mb-3">
+        <span class="font-mono-tech text-[10px] uppercase tracking-[0.22em] text-sky-300">
+          cute reasons &amp; inside jokes
+        </span>
+        <span
+          id="reason-counter-pill"
+          class="font-mono-tech text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-slate-300"
+        >
+          01 / 06
+        </span>
+      </div>
+
+      <blockquote id="cute-reason-quote" class="font-serif-italic text-2xl sm:text-3xl text-white leading-snug">
+        “kamu satu-satunya orang yang bisa bikin hal paling receh berubah jadi kenangan paling berharga.”
+      </blockquote>
+      <p id="cute-reason-sub" class="font-mono-tech text-xs text-pink-300 mt-2.5">
+        — fact #01: senyum kamu punya efek healing 100%
+      </p>
+
+      <div class="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+        <button
+          id="next-reason-btn"
+          type="button"
+          class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition cursor-pointer"
+        >
+          next reason ↻
+        </button>
+        <button
+          id="send-love-burst-btn"
+          type="button"
+          class="px-4 py-2 rounded-full bg-gradient-to-r from-sky-400 to-pink-400 text-slate-950 font-semibold text-xs shadow-md hover:opacity-95 transition cursor-pointer"
+        >
+          send love ✦
+        </button>
+      </div>
+    </section>
+
+    <!-- 6. VIP Anniversary Passes (4 Interactive Flip Coupons) -->
+    <section class="space-y-3">
+      <div class="flex items-end justify-between px-1">
+        <div>
+          <p class="font-mono-tech text-[10px] uppercase tracking-[0.24em] text-sky-300">
+            backstage perks • tap to flip
+          </p>
+          <h2 class="font-serif-italic text-3xl text-white">
+            vip anniversary passes
+          </h2>
+        </div>
+        <span class="font-mono-tech text-[10px] text-slate-400">no expiry</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <!-- Coupon 1 -->
+        <div class="coupon-flip-wrap h-40">
+          <div class="coupon-flip-inner">
+            <div class="coupon-face lany-glass">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-tech text-[10px] text-sky-300">PASS #01 • VIP</span>
+                <span class="text-lg">🚗</span>
+              </div>
+              <div>
+                <h3 class="font-serif-italic text-2xl text-white">late night drive</h3>
+                <p class="text-xs text-slate-300 mt-0.5">+ full LANY playlist &amp; jajan malam</p>
+              </div>
+              <span class="font-mono-tech text-[10px] text-slate-400">tap card to redeem →</span>
+            </div>
+            <div class="coupon-face coupon-back bg-slate-900/95">
+              <p class="text-xs text-slate-200 leading-relaxed">
+                Berlaku kapan aja kamu pengen keliling kota sambil nyanyi lagu LANY keras-keras!
+              </p>
+              <button
+                type="button"
+                data-claim-coupon="0"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
+              >
+                klaim kupon ✓
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coupon 2 -->
+        <div class="coupon-flip-wrap h-40">
+          <div class="coupon-flip-inner">
+            <div class="coupon-face lany-glass">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-tech text-[10px] text-pink-300">PASS #02 • VIP</span>
+                <span class="text-lg">🧋</span>
+              </div>
+              <div>
+                <h3 class="font-serif-italic text-2xl text-white">culinary boss</h3>
+                <p class="text-xs text-slate-300 mt-0.5">bebas pilih makanan &amp; minuman favorit</p>
+              </div>
+              <span class="font-mono-tech text-[10px] text-slate-400">tap card to redeem →</span>
+            </div>
+            <div class="coupon-face coupon-back bg-slate-900/95">
+              <p class="text-xs text-slate-200 leading-relaxed">
+                No debat “terserah mau makan apa”. Kamu yang tentuin menunya, aku yang traktir!
+              </p>
+              <button
+                type="button"
+                data-claim-coupon="1"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
+              >
+                klaim kupon ✓
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coupon 3 -->
+        <div class="coupon-flip-wrap h-40">
+          <div class="coupon-flip-inner">
+            <div class="coupon-face lany-glass">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-tech text-[10px] text-amber-300">PASS #03 • VIP</span>
+                <span class="text-lg">🕊️</span>
+              </div>
+              <div>
+                <h3 class="font-serif-italic text-2xl text-white">anti-ngambek card</h3>
+                <p class="text-xs text-slate-300 mt-0.5">auto baikan + pelukan hangat instan</p>
+              </div>
+              <span class="font-mono-tech text-[10px] text-slate-400">tap card to redeem →</span>
+            </div>
+            <div class="coupon-face coupon-back bg-slate-900/95">
+              <p class="text-xs text-slate-200 leading-relaxed">
+                Gunakan kartu ini kalau salah satu lagi bad mood—wajib langsung baikan &amp; peluk!
+              </p>
+              <button
+                type="button"
+                data-claim-coupon="2"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
+              >
+                klaim kupon ✓
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coupon 4 -->
+        <div class="coupon-flip-wrap h-40">
+          <div class="coupon-flip-inner">
+            <div class="coupon-face lany-glass">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-tech text-[10px] text-indigo-300">PASS #04 • VIP</span>
+                <span class="text-lg">🍿</span>
+              </div>
+              <div>
+                <h3 class="font-serif-italic text-2xl text-white">movie &amp; cuddle</h3>
+                <p class="text-xs text-slate-300 mt-0.5">marathon film pilihan kamu + cemilan</p>
+              </div>
+              <span class="font-mono-tech text-[10px] text-slate-400">tap card to redeem →</span>
+            </div>
+            <div class="coupon-face coupon-back bg-slate-900/95">
+              <p class="text-xs text-slate-200 leading-relaxed">
+                Full quality time berdua nonton film atau series favorit kamu tanpa gangguan!
+              </p>
+              <button
+                type="button"
+                data-claim-coupon="3"
+                class="claim-coupon-btn w-full py-2 rounded-full bg-white text-slate-950 font-semibold text-xs cursor-pointer"
+              >
+                klaim kupon ✓
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Sign-Off -->
+    <footer class="text-center pt-4 pb-6 space-y-1">
+      <p class="font-serif-italic text-2xl text-slate-200">
+        “you’re like water in the desert, like sun in the sky”
+      </p>
+      <p class="font-mono-tech text-[10px] uppercase tracking-[0.22em] text-slate-400">
+        made with love • happy anniversary ♥
+      </p>
+    </footer>
+  </main>
+
+  <!-- =========================================================================
+       MODAL 1: AUTOMATED MEMORY REEL ("PLAY MEMORY REEL")
+       ========================================================================= -->
+  <div id="reel-modal" class="lany-modal" role="dialog" aria-modal="true">
+    <div class="lany-glass w-full max-w-sm rounded-3xl p-4 sm:p-5 relative overflow-hidden">
+      <!-- 6-Segment Story Progress Bars -->
+      <div id="reel-progress-bars" class="grid grid-cols-6 gap-1.5 mb-3">
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
+        <div class="h-1 rounded-full bg-white/20 overflow-hidden"><div class="reel-bar h-full bg-white w-0"></div></div>
+      </div>
+
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-pink-400 animate-ping"></span>
+          <span class="font-mono-tech text-[10px] uppercase tracking-widest text-slate-300">
+            memory reel • you!
+          </span>
+          <span id="reel-slide-indicator" class="font-mono-tech text-[10px] text-sky-300">1 / 6</span>
+        </div>
+        <button
+          id="close-reel-btn"
+          type="button"
+          class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs flex items-center justify-center cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Animated Ken Burns Photo Frame -->
+      <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/15">
+        <img
+          id="reel-active-img"
+          src=""
+          onerror="this.onerror=null;this.src='https://placehold.co/600x750/1e293b/f8fafc?text=Our+Memory';"
+          alt="Memory Reel Slide"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+
+        <!-- Tap Left / Right Zones -->
+        <button
+          id="reel-prev-btn"
+          type="button"
+          aria-label="Previous memory"
+          class="absolute inset-y-0 left-0 w-1/3 cursor-pointer"
+        ></button>
+        <button
+          id="reel-next-btn"
+          type="button"
+          aria-label="Next memory"
+          class="absolute inset-y-0 right-0 w-1/3 cursor-pointer"
+        ></button>
+
+        <!-- Synchronized LANY Lyric & Photo Caption Overlay -->
+        <div class="absolute bottom-4 inset-x-4 text-center pointer-events-none">
+          <p id="reel-lyric-line" class="font-serif-italic text-2xl text-sky-200 drop-shadow">
+            “you’re like water in the desert...”
+          </p>
+          <p id="reel-photo-caption" class="font-handwritten text-xl text-white mt-1">
+            our very first core memory ♥
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: POLAROID LIGHTBOX VIEWER (READ-ONLY)
+       ========================================================================= -->
+  <div id="lightbox-modal" class="lany-modal" role="dialog" aria-modal="true">
+    <div class="lany-glass w-full max-w-sm rounded-3xl p-5 relative">
+      <button
+        type="button"
+        data-close-modal="lightbox-modal"
+        class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white font-bold flex items-center justify-center cursor-pointer z-10"
+      >
+        ✕
+      </button>
+
+      <!-- Physical Polaroid Preview -->
+      <div class="bg-[#fcfaf5] text-slate-900 p-3.5 pb-5 rounded-lg shadow-2xl mt-2">
+        <div class="aspect-[4/5] w-full rounded-xs overflow-hidden bg-slate-200">
+          <img id="lightbox-img" src="" alt="Memory" class="w-full h-full object-cover" />
+        </div>
+
+        <p id="lightbox-caption-text" class="font-handwritten text-2xl sm:text-3xl font-bold text-slate-900 leading-snug mt-3">
+          our very first core memory ♥
+        </p>
+        <p id="lightbox-date-text" class="font-mono-tech text-[10px] text-slate-500 mt-1">
+          CHAPTER 01 • OUR MEMORY
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 3: ANNIVERSARY LOVE LETTER MODAL
+       ========================================================================= -->
+  <div id="letter-modal" class="lany-modal" role="dialog" aria-modal="true">
+    <div class="lany-glass w-full max-w-md rounded-3xl p-6 sm:p-7 relative">
+      <button
+        type="button"
+        data-close-modal="letter-modal"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 flex items-center justify-center text-sm cursor-pointer"
+      >
+        ✕
+      </button>
+
+      <p class="font-mono-tech text-[11px] uppercase tracking-[0.24em] text-pink-300">
+        happy anniversary • track 01 — you!
+      </p>
+      <h3 id="modal-letter-heading" class="font-serif-italic text-3xl text-white mt-1">
+        dear you,
+      </h3>
+
+      <div class="mt-4 pt-4 border-t border-white/10 max-h-[58vh] overflow-y-auto">
+        <p id="modal-letter-content" class="text-sm sm:text-base text-slate-200 leading-relaxed whitespace-pre-line font-light">
+          Happy Anniversary, Sayang! ♥
+
+          Kalau perasaan ini harus dirangkum ke dalam satu lagu, jawabannya selalu “you!” dari LANY. Kamu selalu jadi air di tengah gurun, matahari di langit yang paling cerah, sekaligus tempat pulang paling nyaman buat aku.
+
+          Terima kasih sudah sabar menghadapi tingkahku, selalu ikut ketawa di setiap hal random yang kita lakuin, dan bikin hari-hari biasa terasa luar biasa. Semoga kita terus ngumpulin lebih banyak foto Polaroid, cerita seru, dan tahun-tahun bahagia bareng ya!
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+        <span class="font-mono-tech text-[11px] text-slate-400">LANY — mama’s boy</span>
+        <span id="modal-letter-sign" class="font-serif-italic text-xl text-sky-300">
+          forever yours ♥
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       INTERACTIVE SCRIPT: LANY CONCERT STAGE, "you!" AUDIO, POLAROIDS & REEL
+       ========================================================================= -->
+  <script>
+    (function () {
+      /* ======================================================================
+         KONFIGURASI KADO ANNIVERSARY (SILAKAN UBAH DATA DI BAWAH INI LANGSUNG)
+         ====================================================================== */
+      const GIFT_CONFIG = {
+        partnerName: 'you!', // <-- Ganti nama panggilan pasangan (contoh: 'sayang' atau 'nadia')
+        annivDate: '2025-11-25', // <-- Ganti tanggal jadian (Format: 'TAHUN-BULAN-TANGGAL')
+        theme: 'malibu', // <-- Pilihan tema warna panggung: 'malibu' | 'sunset' | 'rose'
+        heroDescription:
+          'Dari sekian banyak kebetulan di dunia, ketemu dan bareng sama kamu adalah plot twist paling favoritku. Selamat anniversary, partner ketawa & cerita paling seru!',
+        letterBody:
+          'Happy Anniversary, Sayang! ♥\n\nKalau perasaan ini harus dirangkum ke dalam satu lagu, jawabannya selalu “you!” dari LANY. Kamu selalu jadi air di tengah gurun, matahari di langit yang paling cerah, sekaligus tempat pulang paling nyaman buat aku.\n\nTerima kasih sudah sabar menghadapi tingkahku, selalu ikut ketawa di setiap hal random yang kita lakuin, dan bikin hari-hari biasa terasa luar biasa. Semoga kita terus ngumpulin lebih banyak foto Polaroid, cerita seru, dan tahun-tahun bahagia bareng ya!',
+        letterSign: 'forever yours ♥',
+        customAudioUrl: '', // <-- Opsional: isi path file MP3 lokal (contoh: './you-lany.mp3'), kosongkan untuk stream otomatis
+
+        // Ganti 6 foto kenangan, caption tulisan tangan, & label tanggal di bawah ini:
+        memories: [
+          {
+            image: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80',
+            caption: 'our very first core memory ♥',
+            label: 'CHAPTER 01 • OUR MEMORY'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80',
+            caption: 'ketawa sampai lupa waktu 😂',
+            label: 'CHAPTER 02 • OUR MEMORY'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80',
+            caption: 'late night drives & city lights',
+            label: 'CHAPTER 03 • OUR MEMORY'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=600&q=80',
+            caption: 'random date yang selalu seru ✨',
+            label: 'CHAPTER 04 • OUR MEMORY'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
+            caption: 'malibu sunset & quiet talks',
+            label: 'CHAPTER 05 • OUR MEMORY'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80',
+            caption: 'to many more years with you!',
+            label: 'CHAPTER 06 • OUR MEMORY'
+          }
+        ]
+      };
+
+      const CUTE_REASONS = [
+        {
+          quote: '“kamu satu-satunya orang yang bisa bikin hal paling receh berubah jadi kenangan paling berharga.”',
+          sub: '— fact #01: senyum kamu punya efek healing 100%'
+        },
+        {
+          quote: '“sama kamu, macet di jalan pun rasanya kayak konser pribadi LANY paling seru.”',
+          sub: '— fact #02: best passenger princess / co-pilot ever'
+        },
+        {
+          quote: '“you’re like water in the desert, like sun in the sky—literally bikin hidupku jauh lebih adem.”',
+          sub: '— fact #03: LANY approved!'
+        },
+        {
+          quote: '“makasih udah sabar kalau aku lagi loading, dan tetap milih aku di setiap versi hari kita.”',
+          sub: '— fact #04: partner in crime selamanya'
+        },
+        {
+          quote: '“kalau disuruh milih ulang dari jutaan orang, jawabannya tetap bakal berhenti di kamu.”',
+          sub: '— fact #05: everything leads back to you!'
+        },
+        {
+          quote: '“selamat anniversary! siap-siap ngumpulin ribuan foto Polaroid lucu lagi bareng aku ya.”',
+          sub: '— fact #06: to infinity & beyond ♥'
+        }
+      ];
+
+      const REEL_LYRICS = [
+        '“you’re like water in the desert...”',
+        '“like sun in the sky...”',
+        '“i’m nothing without you...”',
+        '“all my life i’ve been waiting for someone like you...”',
+        '“everything leads back to you!”',
+        '“happy anniversary, my favorite person ♥”'
+      ];
+
+      let activeTheme = GIFT_CONFIG.theme || 'malibu';
+      let claimedCoupons = [false, false, false, false];
+      let currentReasonIndex = 0;
+
+      /* ----------------------------------------------------------------------
+         1. RENDER UI, POLAROIDS & COUPON CLAIMED STATES FROM GIFT_CONFIG
+         ---------------------------------------------------------------------- */
+      function applyConfigToUI() {
+        document.body.setAttribute('data-theme', activeTheme);
+        const rawName = (GIFT_CONFIG.partnerName || 'you!').trim();
+        const lowerName = rawName.toLowerCase();
+
+        const headerBadge = document.getElementById('header-recipient-badge');
+        if (headerBadge) headerBadge.textContent = `happy anniversary, ${lowerName}`;
+
+        const heroPartner = document.getElementById('hero-partner-name');
+        if (heroPartner) heroPartner.textContent = lowerName;
+
+        const heroDesc = document.getElementById('hero-dedication-text');
+        if (heroDesc && GIFT_CONFIG.heroDescription) heroDesc.textContent = GIFT_CONFIG.heroDescription;
+
+        const letterHeading = document.getElementById('modal-letter-heading');
+        if (letterHeading) letterHeading.textContent = `dear ${lowerName},`;
+
+        const letterContent = document.getElementById('modal-letter-content');
+        if (letterContent) letterContent.textContent = GIFT_CONFIG.letterBody;
+
+        const letterSign = document.getElementById('modal-letter-sign');
+        if (letterSign) letterSign.textContent = GIFT_CONFIG.letterSign;
+
+        for (let i = 0; i < 6; i++) {
+          const mem = GIFT_CONFIG.memories[i];
+          if (!mem) continue;
+          const img = document.getElementById(`gallery-img-${i}`);
+          const cap = document.getElementById(`gallery-cap-${i}`);
+          const dateEl = document.getElementById(`gallery-date-${i}`);
+          if (img && mem.image) img.src = mem.image;
+          if (cap && mem.caption) cap.textContent = mem.caption;
+          if (dateEl && mem.label) dateEl.textContent = mem.label;
+        }
+
+        // Update Claimed Coupons UI
+        document.querySelectorAll('.claim-coupon-btn').forEach((btn) => {
+          const idx = Number(btn.getAttribute('data-claim-coupon'));
+          if (claimedCoupons[idx]) {
+            btn.textContent = 'sudah diklaim ♥';
+            btn.classList.remove('bg-white', 'text-slate-950');
+            btn.classList.add('bg-emerald-400', 'text-slate-950');
+          } else {
+            btn.textContent = 'klaim kupon ✓';
+            btn.classList.add('bg-white', 'text-slate-950');
+            btn.classList.remove('bg-emerald-400');
+          }
+        });
+
+        updateCounter();
+      }
+
+      /* ----------------------------------------------------------------------
+         2. LIVE RELATIONSHIP TIMER
+         ---------------------------------------------------------------------- */
+      function formatReadableDate(isoStr) {
+        const d = new Date(isoStr + 'T00:00:00');
+        if (isNaN(d.getTime())) return isoStr;
+        return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase();
+      }
+
+      function updateCounter() {
+        const dateVal = GIFT_CONFIG.annivDate || '2025-11-25';
+        const target = new Date(dateVal + 'T00:00:00');
+        const now = new Date();
+        const isFuture = target > now;
+        const diff = Math.abs(now - target);
+
+        const headingEl = document.getElementById('counter-heading');
+        const subEl = document.getElementById('counter-date-sub');
+        const readable = formatReadableDate(dateVal);
+
+        if (headingEl) {
+          headingEl.textContent = isFuture ? 'countdown to our anniversary' : 'time since our story began';
+        }
+        if (subEl) {
+          subEl.textContent = isFuture ? `until ${readable}` : `since ${readable}`;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        const countDaysEl = document.getElementById('count-days');
+        const countHoursEl = document.getElementById('count-hours');
+        const countMinsEl = document.getElementById('count-mins');
+        const countSecsEl = document.getElementById('count-secs');
+
+        if (countDaysEl) countDaysEl.textContent = String(days);
+        if (countHoursEl) countHoursEl.textContent = String(hours).padStart(2, '0');
+        if (countMinsEl) countMinsEl.textContent = String(mins).padStart(2, '0');
+        if (countSecsEl) countSecsEl.textContent = String(secs).padStart(2, '0');
+      }
+      setInterval(updateCounter, 1000);
+
+      /* ----------------------------------------------------------------------
+         3. AUDIO ENGINE FOR "you!" — LANY
+         ---------------------------------------------------------------------- */
+      const audioEl = document.getElementById('lany-audio');
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const playPauseIcon = document.getElementById('play-pause-icon');
+      const waveformEl = document.getElementById('audio-waveform');
+      const discArtEl = document.getElementById('album-disc-art');
+      const statusCaptionEl = document.getElementById('audio-status-caption');
+      const seekBar = document.getElementById('audio-seek-bar');
+      const timeCurrentEl = document.getElementById('time-current');
+      const timeDurationEl = document.getElementById('time-duration');
+
+      let resolvedAudioUrl = GIFT_CONFIG.customAudioUrl || '';
+      let synthFallbackActive = false;
+      let synthInterval = null;
+      let synthCtx = null;
+
+      async function fetchLanyYouStream() {
+        if (GIFT_CONFIG.customAudioUrl) {
+          resolvedAudioUrl = GIFT_CONFIG.customAudioUrl;
+          if (audioEl && !audioEl.src) audioEl.src = resolvedAudioUrl;
+          return resolvedAudioUrl;
+        }
+
+        try {
+          const res = await fetch('https://itunes.apple.com/lookup?id=1550772364');
+          const data = await res.json();
+          if (data && Array.isArray(data.results) && data.results.length > 0 && data.results[0].previewUrl) {
+            resolvedAudioUrl = data.results[0].previewUrl;
+            if (audioEl && !audioEl.src) {
+              audioEl.src = resolvedAudioUrl;
+            }
+            return resolvedAudioUrl;
+          }
+        } catch (err) {}
+
+        try {
+          const res2 = await fetch('https://itunes.apple.com/search?term=LANY+you!&media=music&entity=song&limit=3');
+          const data2 = await res2.json();
+          const match = (data2.results || []).find(
+            (r) => r.artistName && r.artistName.toLowerCase().includes('lany') && r.previewUrl
+          );
+          if (match) {
+            resolvedAudioUrl = match.previewUrl;
+            if (audioEl && !audioEl.src) {
+              audioEl.src = resolvedAudioUrl;
+            }
+            return resolvedAudioUrl;
+          }
+        } catch (err2) {}
+        return '';
+      }
+
+      function startSynthPadFallback() {
+        if (synthFallbackActive) return;
+        try {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          if (!synthCtx) synthCtx = new Ctx();
+          if (synthCtx.state === 'suspended') synthCtx.resume();
+
+          synthFallbackActive = true;
+          setPlayingVisuals(true, 'playing dreamy LANY synth • you! vibe');
+
+          const chords = [
+            [164.81, 246.94, 329.63, 415.30], // E
+            [123.47, 246.94, 369.99, 493.88], // B
+            [138.59, 207.65, 329.63, 415.30], // C#m
+            [110.00, 220.00, 329.63, 440.00]  // A
+          ];
+          let step = 0;
+
+          const playChord = () => {
+            if (!synthFallbackActive || !synthCtx) return;
+            const now = synthCtx.currentTime;
+            const notes = chords[step % chords.length];
+            step++;
+
+            notes.forEach((freq) => {
+              const osc = synthCtx.createOscillator();
+              const gain = synthCtx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(freq, now);
+
+              gain.gain.setValueAtTime(0.0001, now);
+              gain.gain.linearRampToValueAtTime(0.025, now + 0.6);
+              gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.1);
+
+              osc.connect(gain);
+              gain.connect(synthCtx.destination);
+              osc.start(now);
+              osc.stop(now + 3.2);
+            });
+          };
+
+          playChord();
+          synthInterval = setInterval(playChord, 3000);
+        } catch (e) {}
+      }
+
+      function stopSynthPadFallback() {
+        synthFallbackActive = false;
+        if (synthInterval) {
+          clearInterval(synthInterval);
+          synthInterval = null;
+        }
+      }
+
+      function setPlayingVisuals(playing, customCaption) {
+        if (playing) {
+          if (playPauseIcon) playPauseIcon.textContent = '⏸';
+          waveformEl?.classList.add('is-playing');
+          discArtEl?.classList.remove('disc-paused');
+          if (statusCaptionEl) {
+            statusCaptionEl.textContent = customCaption || 'now playing: you! — LANY (mama’s boy)';
+          }
+        } else {
+          if (playPauseIcon) playPauseIcon.textContent = '▶';
+          waveformEl?.classList.remove('is-playing');
+          discArtEl?.classList.add('disc-paused');
+          if (statusCaptionEl) {
+            statusCaptionEl.textContent = customCaption || 'paused • you! — LANY';
+          }
+        }
+      }
+
+      async function playLanySong() {
+        stopSynthPadFallback();
+        if (!audioEl) return;
+
+        if (!audioEl.src) {
+          if (resolvedAudioUrl) {
+            audioEl.src = resolvedAudioUrl;
+          } else {
+            setPlayingVisuals(true, 'memuat lagu you! — LANY...');
+            const url = await fetchLanyYouStream();
+            if (url) audioEl.src = url;
+          }
+        }
+
+        if (audioEl.src) {
+          audioEl.volume = 0.9;
+          audioEl
+            .play()
+            .then(() => {
+              setPlayingVisuals(true, 'now playing: you! — LANY (mama’s boy)');
+            })
+            .catch(() => {
+              startSynthPadFallback();
+            });
+        } else {
+          startSynthPadFallback();
+        }
+      }
+
+      function pauseLanySong() {
+        stopSynthPadFallback();
+        if (audioEl && !audioEl.paused) audioEl.pause();
+        setPlayingVisuals(false);
+      }
+
+      function formatSec(sec) {
+        if (!isFinite(sec) || sec < 0) return '0:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m}:${String(s).padStart(2, '0')}`;
+      }
+
+      audioEl?.addEventListener('timeupdate', () => {
+        if (!audioEl.duration) return;
+        const pct = (audioEl.currentTime / audioEl.duration) * 100;
+        if (seekBar) seekBar.value = String(pct);
+        if (timeCurrentEl) timeCurrentEl.textContent = formatSec(audioEl.currentTime);
+        if (timeDurationEl) timeDurationEl.textContent = formatSec(audioEl.duration);
+      });
+
+      seekBar?.addEventListener('input', () => {
+        if (!audioEl || !audioEl.duration) return;
+        audioEl.currentTime = (Number(seekBar.value) / 100) * audioEl.duration;
+      });
+
+      playPauseBtn?.addEventListener('click', () => {
+        const currentlyPlaying = (audioEl && !audioEl.paused) || synthFallbackActive;
+        if (currentlyPlaying) pauseLanySong();
+        else playLanySong();
+      });
+
+      /* ----------------------------------------------------------------------
+         4. AUTOMATED MEMORY REEL ("PLAY MEMORY REEL")
+         ---------------------------------------------------------------------- */
+      let reelIndex = 0;
+      let reelTimer = null;
+
+      function renderReelSlide(idx) {
+        reelIndex = (idx + 6) % 6;
+        const mem = GIFT_CONFIG.memories[reelIndex] || GIFT_CONFIG.memories[0];
+        const imgEl = document.getElementById('reel-active-img');
+        const lyricEl = document.getElementById('reel-lyric-line');
+        const capEl = document.getElementById('reel-photo-caption');
+        const indEl = document.getElementById('reel-slide-indicator');
+
+        if (imgEl && mem) {
+          imgEl.classList.remove('reel-zoom-active');
+          void imgEl.offsetWidth;
+          imgEl.src = mem.image;
+          imgEl.classList.add('reel-zoom-active');
+        }
+        if (lyricEl) lyricEl.textContent = REEL_LYRICS[reelIndex % REEL_LYRICS.length];
+        if (capEl && mem) capEl.textContent = mem.caption;
+        if (indEl) indEl.textContent = `${reelIndex + 1} / 6`;
+
+        document.querySelectorAll('#reel-progress-bars .reel-bar').forEach((bar, i) => {
+          bar.style.transition = 'none';
+          if (i < reelIndex) {
+            bar.style.width = '100%';
+          } else if (i === reelIndex) {
+            bar.style.width = '0%';
+            requestAnimationFrame(() => {
+              bar.style.transition = 'width 4.5s linear';
+              bar.style.width = '100%';
+            });
+          } else {
+            bar.style.width = '0%';
+          }
+        });
+      }
+
+      function startMemoryReel() {
+        openModal('reel-modal');
+        const currentlyPlaying = (audioEl && !audioEl.paused) || synthFallbackActive;
+        if (!currentlyPlaying) playLanySong();
+
+        renderReelSlide(0);
+        clearInterval(reelTimer);
+        reelTimer = setInterval(() => {
+          renderReelSlide(reelIndex + 1);
+        }, 4500);
+      }
+
+      function stopMemoryReel() {
+        clearInterval(reelTimer);
+        reelTimer = null;
+        closeModal('reel-modal');
+      }
+
+      /* ----------------------------------------------------------------------
+         5. LANY LIVE CONCERT STAGE SPOTLIGHTS, ARENA LIGHTS & SHOOTING STARS
+         ---------------------------------------------------------------------- */
+      const canvas = document.getElementById('lany-sky-canvas');
+      const ctx = canvas.getContext('2d');
+      let arenaLights = [];
+      let shootingStars = [];
+      let stagePhase = 0;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initArenaLights();
+      }
+
+      function initArenaLights() {
+        const count = Math.min(110, Math.floor((canvas.width * canvas.height) / 10500));
+        arenaLights = Array.from({ length: count }, (_, idx) => {
+          const isCrowdPhone = idx > count * 0.62;
+          return {
+            x: Math.random() * canvas.width,
+            y: isCrowdPhone
+              ? canvas.height * (0.64 + Math.random() * 0.34)
+              : Math.random() * canvas.height * 0.65,
+            r: isCrowdPhone ? 1.1 + Math.random() * 1.8 : 0.6 + Math.random() * 1.4,
+            alpha: isCrowdPhone ? 0.35 + Math.random() * 0.55 : 0.2 + Math.random() * 0.5,
+            speed: 0.008 + Math.random() * 0.018,
+            phase: Math.random() * Math.PI * 2,
+            isCrowdPhone
+          };
+        });
+      }
+
+      function triggerShootingStar(startX, startY) {
+        shootingStars.push({
+          x: startX ?? Math.random() * canvas.width * 0.8,
+          y: startY ?? Math.random() * canvas.height * 0.35,
+          vx: 8 + Math.random() * 5,
+          vy: 4 + Math.random() * 3,
+          len: 95 + Math.random() * 60,
+          alpha: 1
+        });
+      }
+
+      function drawConcertSpotlight(originX, originY, targetX, targetY, spreadWidth, colorInner, colorOuter) {
+        ctx.save();
+        const beamGrad = ctx.createLinearGradient(originX, originY, targetX, targetY);
+        beamGrad.addColorStop(0, colorInner);
+        beamGrad.addColorStop(0.55, colorOuter);
+        beamGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx.fillStyle = beamGrad;
+        ctx.beginPath();
+        ctx.moveTo(originX - 18, originY);
+        ctx.lineTo(originX + 18, originY);
+        ctx.lineTo(targetX + spreadWidth, targetY);
+        ctx.lineTo(targetX - spreadWidth, targetY);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function renderSky() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stagePhase += 0.007;
+
+        const theme = document.body.getAttribute('data-theme');
+        let beamAInner = 'rgba(56, 189, 248, 0.22)';
+        let beamAOuter = 'rgba(56, 189, 248, 0.06)';
+        let beamBInner = 'rgba(129, 140, 248, 0.20)';
+        let beamBOuter = 'rgba(129, 140, 248, 0.05)';
+        let horizonColor = 'rgba(56, 189, 248, 0.24)';
+
+        if (theme === 'sunset') {
+          beamAInner = 'rgba(251, 146, 60, 0.22)';
+          beamAOuter = 'rgba(251, 146, 60, 0.06)';
+          beamBInner = 'rgba(244, 63, 94, 0.20)';
+          beamBOuter = 'rgba(244, 63, 94, 0.05)';
+          horizonColor = 'rgba(251, 146, 60, 0.24)';
+        } else if (theme === 'rose') {
+          beamAInner = 'rgba(244, 114, 182, 0.24)';
+          beamAOuter = 'rgba(244, 114, 182, 0.06)';
+          beamBInner = 'rgba(192, 132, 252, 0.20)';
+          beamBOuter = 'rgba(192, 132, 252, 0.05)';
+          horizonColor = 'rgba(244, 114, 182, 0.25)';
+        }
+
+        // Sweeping LANY Concert Truss Spotlights
+        const w = canvas.width;
+        const h = canvas.height;
+        const sway1 = Math.sin(stagePhase) * (w * 0.22);
+        const sway2 = Math.cos(stagePhase * 0.85) * (w * 0.22);
+
+        drawConcertSpotlight(w * 0.22, -10, w * 0.42 + sway1, h * 0.82, w * 0.22, beamAInner, beamAOuter);
+        drawConcertSpotlight(w * 0.78, -10, w * 0.58 + sway2, h * 0.82, w * 0.22, beamBInner, beamBOuter);
+        drawConcertSpotlight(w * 0.5, -10, w * 0.5 - sway1 * 0.6, h * 0.75, w * 0.28, 'rgba(255, 255, 255, 0.11)', 'rgba(255, 255, 255, 0.02)');
+
+        // Subtle Stage Horizon Glow
+        const stageGlow = ctx.createRadialGradient(w * 0.5, h * 0.34, 10, w * 0.5, h * 0.34, Math.max(w, h) * 0.55);
+        stageGlow.addColorStop(0, horizonColor);
+        stageGlow.addColorStop(1, 'rgba(5, 8, 20, 0)');
+        ctx.fillStyle = stageGlow;
+        ctx.fillRect(0, 0, w, h);
+
+        // Arena Crowd Phone Flashlights & Atmospheric Haze Particles
+        arenaLights.forEach((s) => {
+          s.phase += s.speed;
+          const a = s.alpha * (0.45 + 0.55 * Math.sin(s.phase));
+          if (s.isCrowdPhone) {
+            ctx.fillStyle = `rgba(255, 250, 240, ${a})`;
+          } else {
+            ctx.fillStyle = `rgba(224, 242, 254, ${a})`;
+          }
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Shooting Stars on Tap
+        shootingStars = shootingStars.filter((st) => st.alpha > 0.02);
+        shootingStars.forEach((st) => {
+          const tailX = st.x - st.vx * (st.len / 10);
+          const tailY = st.y - st.vy * (st.len / 10);
+          const lineGrad = ctx.createLinearGradient(st.x, st.y, tailX, tailY);
+          lineGrad.addColorStop(0, `rgba(255, 255, 255, ${st.alpha})`);
+          lineGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+          ctx.strokeStyle = lineGrad;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(st.x, st.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.stroke();
+
+          st.x += st.vx;
+          st.y += st.vy;
+          st.alpha *= 0.96;
+        });
+
+        requestAnimationFrame(renderSky);
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      renderSky();
+
+      /* ----------------------------------------------------------------------
+         6. HELPERS: TOAST & WHISPERS
+         ---------------------------------------------------------------------- */
+      let toastTimer = null;
+      function showToast(msg) {
+        const el = document.getElementById('lany-toast');
+        const txt = document.getElementById('lany-toast-text');
+        if (!el || !txt) return;
+        txt.textContent = msg;
+        el.style.opacity = '1';
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          el.style.opacity = '0';
+        }, 2600);
+      }
+
+      const WHISPER_LINES = [
+        'happy anniversary ♥',
+        'like sun in the sky ✦',
+        'water in the desert',
+        'everything leads to you!',
+        'roses & starlight 🌹'
+      ];
+
+      function spawnWhisper(x, y, customText) {
+        const el = document.createElement('div');
+        el.className = 'floating-lyric-whisper';
+        el.textContent = customText || WHISPER_LINES[Math.floor(Math.random() * WHISPER_LINES.length)];
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1500);
+      }
+
+      function openModal(id) {
+        document.getElementById(id)?.classList.add('active');
+      }
+
+      function closeModal(id) {
+        document.getElementById(id)?.classList.remove('active');
+      }
+
+      /* ----------------------------------------------------------------------
+         7. INITIALIZE ALL EVENT LISTENERS
+         ---------------------------------------------------------------------- */
+      window.addEventListener('DOMContentLoaded', () => {
+        applyConfigToUI();
+        fetchLanyYouStream();
+
+        // Entry Gate Button -> Unlocks & Starts "you!" — LANY
+        const gate = document.getElementById('entry-gate');
+        document.getElementById('enter-experience-btn')?.addEventListener('click', () => {
+          playLanySong();
+          triggerShootingStar();
+          if (gate) {
+            gate.classList.add('gate-hidden');
+            setTimeout(() => gate.remove(), 700);
+          }
+        });
+
+        // Stage Lighting Theme Switcher Pills
+        document.querySelectorAll('[data-set-theme]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const t = btn.getAttribute('data-set-theme');
+            if (!t) return;
+            activeTheme = t;
+            applyConfigToUI();
+            const labels = {
+              malibu: 'malibu nights stage lighting 🌙',
+              sunset: 'golden hour la stage lighting 🌅',
+              rose: 'rose petal arena lighting 🌹'
+            };
+            showToast(labels[t] || t);
+          });
+        });
+
+        // Memory Reel Controls
+        document.getElementById('open-reel-btn')?.addEventListener('click', startMemoryReel);
+        document.getElementById('close-reel-btn')?.addEventListener('click', stopMemoryReel);
+        document.getElementById('reel-prev-btn')?.addEventListener('click', () => {
+          renderReelSlide(reelIndex - 1);
+        });
+        document.getElementById('reel-next-btn')?.addEventListener('click', () => {
+          renderReelSlide(reelIndex + 1);
+        });
+
+        // Love Letter Modal
+        document.getElementById('open-letter-modal-btn')?.addEventListener('click', () => {
+          openModal('letter-modal');
+        });
+
+        // Polaroid Lightbox Viewer (Read-Only)
+        document.querySelectorAll('[data-photo-idx]').forEach((card) => {
+          card.addEventListener('click', () => {
+            const idx = Number(card.getAttribute('data-photo-idx'));
+            const mem = GIFT_CONFIG.memories[idx] || GIFT_CONFIG.memories[0];
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCap = document.getElementById('lightbox-caption-text');
+            const lbDate = document.getElementById('lightbox-date-text');
+            if (lbImg && mem) lbImg.src = mem.image;
+            if (lbCap && mem) lbCap.textContent = mem.caption;
+            if (lbDate && mem) lbDate.textContent = mem.label;
+            openModal('lightbox-modal');
+          });
+        });
+
+        // Cute Reasons Shuffle & Send Love Burst
+        document.getElementById('next-reason-btn')?.addEventListener('click', () => {
+          currentReasonIndex = (currentReasonIndex + 1) % CUTE_REASONS.length;
+          const item = CUTE_REASONS[currentReasonIndex];
+          const qEl = document.getElementById('cute-reason-quote');
+          const sEl = document.getElementById('cute-reason-sub');
+          const pEl = document.getElementById('reason-counter-pill');
+          if (qEl) qEl.textContent = item.quote;
+          if (sEl) sEl.textContent = item.sub;
+          if (pEl) pEl.textContent = `${String(currentReasonIndex + 1).padStart(2, '0')} / ${String(CUTE_REASONS.length).padStart(2, '0')}`;
+        });
+
+        document.getElementById('send-love-burst-btn')?.addEventListener('click', (e) => {
+          triggerShootingStar(window.innerWidth * 0.2, window.innerHeight * 0.2);
+          const rect = e.currentTarget.getBoundingClientRect();
+          spawnWhisper(rect.left + rect.width / 2, rect.top, 'love sent to you! ♥✦');
+        });
+
+        // VIP Coupons Flip & Claim
+        document.querySelectorAll('.coupon-flip-wrap').forEach((card) => {
+          card.addEventListener('click', (e) => {
+            if (e.target.closest('.claim-coupon-btn')) return;
+            card.classList.toggle('is-flipped');
+          });
+        });
+
+        document.querySelectorAll('.claim-coupon-btn').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = Number(btn.getAttribute('data-claim-coupon'));
+            claimedCoupons[idx] = !claimedCoupons[idx];
+            applyConfigToUI();
+            const rect = btn.getBoundingClientRect();
+            spawnWhisper(
+              rect.left + rect.width / 2,
+              rect.top,
+              claimedCoupons[idx] ? 'kupon diklaim! screenshot ke aku 🎟️' : 'kupon di-reset'
+            );
+          });
+        });
+
+        // Background Tap -> Shooting Star & Poetic Whisper
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('button, label, input, textarea, .polaroid-card, .coupon-flip-wrap, .lany-modal.active')) return;
+          triggerShootingStar(e.clientX * 0.5, e.clientY * 0.4);
+          spawnWhisper(e.clientX, e.clientY);
+        });
+
+        // Close Modals
+        document.querySelectorAll('[data-close-modal]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            closeModal(btn.getAttribute('data-close-modal'));
+          });
+        });
+
+        document.querySelectorAll('.lany-modal').forEach((modal) => {
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              if (modal.id === 'reel-modal') stopMemoryReel();
+              else modal.classList.remove('active');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
